@@ -1,0 +1,21 @@
+{
+  "name": "fb_node",
+  "version": "1.0.0",
+  "description": "this is for only learning and practice perpose",
+  "main": "start",
+  "scripts": {
+    "test": "start",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "learn"
+  ],
+  "author": "Faizan khan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.1.2",
+    "path": "^0.12.7"
+  }
+}
