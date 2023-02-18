@@ -1,28 +1,33 @@
 <html>
-
 <head>
+
+    <link rel="stylesheet" type="text/css" href="/login_style.css">
     <title>
         Facebook Clone
     </title>
 </head>
 
 <body>
-    <div>
-        <h1>Facebook</h1>
+    <div class="center">
+        <h1 class="title">Facebook</h1>
     </div>
-    <span>
-        <div>Login</div>
-        <form action="/login" method="POST">
-            <input type="text" name="email">
-            <input type="text" name="password">
-            <input type="submit">
-        </form>
 
+            <div id="login_form">
+                <h3 class="title">Login</h3>
+                <form action="/login" method="POST">
+                    <input class="fields" type="text" name="email" , placeholder="Enter Email"><br>
+                    <input  class="fields" type="text" name="password" , placeholder="Enter Password"><br><br>
+                    <input id="login_btn" type="submit" value="Sign in">
+                </form>
 
-        <form action="signup" method="get">
-            <input type="submit" name="signup" title="sign up">
-        </form>
-    </span>
+                <div class="divider"></div>
+
+                <form action="signup" method="get">
+                    <input id = "sign_up_btn"
+                    type="submit" name="signup" title="sign up" value="Sign Up">
+                </form>
+            </div>
+
 </body>
 
 </html>
