@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/home_style.css">
+    <title>Facebook</title>
+</head>
+
+<body>
+    <div class="center">
+        <h1 class="title">
+            Facebook
+        </h1>
+        <form action="postSubmit" method="post">
+            <input type="text" id="postField" placeholder="post" name="content"><br>  
+            <input type="text" class="hide" placeholder="id" name="userId" value=<%=data.user_id %>><br><br>
+            <input id="login_btn" type="submit" value="Post">
+        </form>
+        <% for(let post of posts){ %>
+            <h3>
+                <%= post.content %>
+            </h3>
+            <% } %>
+    </div>
+</body>
+</html>

@@ -5,7 +5,18 @@
     <title>
         Facebook Clone
     </title>
+    <script>
+        function myFunction(){
+            console.log(document.cookie) ;
+        }
+        </script>
 </head>
+
+<script>
+function myFunction(){
+    console.log(document.cookie) ;
+}
+</script>
 
 <body>
     <div class="center">
@@ -24,7 +35,7 @@
 
                 <form action="signup" method="get">
                     <input id = "sign_up_btn"
-                    type="submit" name="signup" title="sign up" value="Sign Up">
+                    type="submit" name="signup" title="sign up" value="Sign Up" onclick="myFunction()">
                 </form>
             </div>
 

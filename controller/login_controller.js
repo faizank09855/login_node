@@ -34,22 +34,30 @@ exports.signUpSubmit = (req, res) => {
 exports.loginSubmit = (req, res) => {
 
     let email = req.body.email;
-    let query = "select password from users where email= ?";
+    let query = "select * from users where email= ?";
    if(email != undefined){
     db.execute(query, [email]).then(result => {
         if(result[0].length > 0){
             let password = result[0][0].password;
             if (password == req.body.password) {
-                let repath = path.dirname(__dirname);
-                res.sendFile(repath + "/view/homepage.html",);
+              db.execute('select * from posts').then(result2=>{
+                 res.render('homepage',{
+                    data : result[0][0] , 
+                    posts : result2[0]
+                });
+              }).catch(err=>{
+                console.log(err);
+              }) ; 
+
+               
             }
             else {
-                console.log("Wrong Password") ; 
+              /// Wrong Password
                 let repath = path.dirname(__dirname);
                 res.sendFile(repath + "/view/index.html",);
             }
         }else{
-            console.log("Email Not Found") ; 
+            /// Email Not Found
             let repath = path.dirname(__dirname);
                 res.sendFile(repath + "/view/index.html",);
         }

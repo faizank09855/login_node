@@ -1,0 +1,45 @@
+.hide{
+    margin: 0;
+    padding: 0;
+    height: 0;
+    width: 0;
+    border: none;
+}
+
+body{
+    padding: 0;
+    padding-top: 16;
+    margin: 0;
+    background-color: #1877F2;
+
+}
+
+.center{
+  text-align: center;
+}
+
+.title{
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#postField{
+
+height: 120px;
+border: none;
+border-radius: 6px;
+
+width: 280px;
+}
+
+#login_btn{
+    background-color: green;
+    color: white;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border: none;
+    border-radius: 4px;
+    height: 32px;
+    width: 260px;
+    
+    }
