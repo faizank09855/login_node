@@ -1,25 +1,54 @@
 <html>
-
 <head>
     <link rel="stylesheet" type="text/css" href="/home_style.css">
     <title>Facebook</title>
 </head>
 
 <body>
-    <div class="center">
-        <h1 class="title">
-            Facebook
-        </h1>
-        <form action="postSubmit" method="post">
-            <input type="text" id="postField" placeholder="post" name="content"><br>  
-            <input type="text" class="hide" placeholder="id" name="userId" value=<%=data.user_id %>><br><br>
-            <input id="login_btn" type="submit" value="Post">
-        </form>
-        <% for(let post of posts){ %>
-            <h3>
-                <%= post.content %>
-            </h3>
-            <% } %>
+    <div class="center1">
+        <div class="center">
+            <h1 class="title">
+                Facebook
+            </h1>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 16px; margin: 0;">
+            <div>
+                <div>
+                    <label class="createPostTitle">Create Post</label>
+                    <br><br>
+                </div>
+                <form action="postSubmit" method="post">
+                    
+                
+                    <input type="text" id="postField" placeholder="post" name="content"><br>
+                    <input type="text" class="hide" placeholder="id" name="userId" value=<%=data.user_id %>><br><br>
+                    <input type="text" class="hide" placeholder="id" name="userName" value=<%=data.first_name %>><br><br>
+                    <input id="login_btn" type="submit" value="Post">
+                </form>
+
+                <div>
+
+                    <% for(var user of users){%>
+
+<div>
+    <%= user.first_name %>
+</div>
+                        <% }%>
+
+                </div>
+
+            </div>
+            <div style="width: 35%; height: min-content;">
+                    <% for(let post of posts){ %>
+                    <%- include('post_card' , {post : post}) %>
+                    <% }%>
+            </div>
+            <div>
+                <h2>
+                    More Options
+                </h2>
+            </div>
+        </div>
     </div>
 </body>
 </html>

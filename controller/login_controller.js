@@ -15,14 +15,14 @@ exports.signUp = (req, res) => {
 
 exports.signUpSubmit = (req, res) => {
 
-    let email = req.body.email ; 
-    let password = req.body.password ; 
-    let first_name = req.body.first_name ; 
-    let last_name = req.body.last_name ;
-    let age = req.body.age ; 
+    let email = req.body.email;
+    let password = req.body.password;
+    let first_name = req.body.first_name;
+    let last_name = req.body.last_name;
+    let age = req.body.age;
 
     let query = "insert into  users (email , password , first_name , last_name , age) values (? , ? , ? , ? , ?)";
-    db.execute(query , [email , password , first_name , last_name, age]).then(result => {
+    db.execute(query, [email, password, first_name, last_name, age]).then(result => {
         res.redirect('/');
     }).catch(err => {
         console.log(err.toString());
@@ -33,41 +33,54 @@ exports.signUpSubmit = (req, res) => {
 
 exports.loginSubmit = (req, res) => {
 
+    var userResults = {};
+
     let email = req.body.email;
     let query = "select * from users where email= ?";
-   if(email != undefined){
-    db.execute(query, [email]).then(result => {
-        if(result[0].length > 0){
-            let password = result[0][0].password;
-            if (password == req.body.password) {
-              db.execute('select * from posts').then(result2=>{
-                 res.render('homepage',{
-                    data : result[0][0] , 
-                    posts : result2[0]
-                });
-              }).catch(err=>{
-                console.log(err);
-              }) ; 
+    if (email != undefined) {
+        db.execute(query, [email]).then(result => {
+            if (result[0].length > 0) {
+                let password = result[0][0].password;
 
-               
-            }
-            else {
-              /// Wrong Password
+                console.log(result[0][0]);
+                if (password == req.body.password) {
+
+                    db.execute("select * from users where email != ?", [req.body.email]).then(
+                        result => {
+                            userResults = result[0];
+                        }
+                    ).catch(err => {
+                        console.log(err);
+                    });
+                    db.execute('select * from posts').then(result2 => {
+                        res.render('homepage', {
+                            data: result[0][0],
+                            users: userResults,
+                            posts: result2[0]
+                        });
+                    }).catch(err => {
+                        console.log(err);
+                    });
+
+
+                }
+                else {
+                    /// Wrong Password
+                    let repath = path.dirname(__dirname);
+                    res.sendFile(repath + "/view/index.html",);
+                }
+            } else {
+                /// Email Not Found
                 let repath = path.dirname(__dirname);
                 res.sendFile(repath + "/view/index.html",);
             }
-        }else{
-            /// Email Not Found
-            let repath = path.dirname(__dirname);
-                res.sendFile(repath + "/view/index.html",);
-        }
-    }).catch(err => {
-        console.log(err);
-    });
-   }else{
-    let repath = path.dirname(__dirname);
-    res.sendFile(repath + "/view/index.html",);
+        }).catch(err => {
+            console.log(err);
+        });
+    } else {
+        let repath = path.dirname(__dirname);
+        res.sendFile(repath + "/view/index.html",);
 
-   }
+    }
 }
 
